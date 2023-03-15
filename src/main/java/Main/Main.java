@@ -110,6 +110,7 @@ public class Main {
        Map<String, Integer> productsMap = new HashMap<>();
        productsMap = productsDAO.getCount();
         System.out.println(productsMap);
+
     }
     private static void option6(){
         productsDAO.getProducts().stream().sorted((o1, o2) -> {

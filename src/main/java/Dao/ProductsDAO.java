@@ -27,6 +27,7 @@ public class ProductsDAO {
                products.setProduct_name(rs.getString("product_name"));
                products.setProduct_price(rs.getInt("product_price"));
                products.setProduct_color(rs.getString("product_color"));
+               products.setBrand_id(rs.getInt("brand_id"));
                productsList.add(products);
             }
             rs.close();
@@ -78,8 +79,8 @@ public class ProductsDAO {
         }
     }
 
-    public Map<String, Integer> getCount(){
-        Map<String, Integer> productsList = new HashMap<>();
+    public Map<Brands, List<Products>> getCount(){
+        Map<Brands, List<Products>> brandList = new HashMap<>();
         try{
             Connection conn = MyConnection.getConnection();
             String sql = " SELECT count(p.id)  as Soluong,  b.brand_name " +
@@ -91,12 +92,12 @@ public class ProductsDAO {
             ResultSet rs = stm.executeQuery(sql);
 
             while (rs.next()){
-//                Products products = new Products();
-//                Brands brands = new Brands();
-//                products.setSoLuong(rs.getInt("Soluong"));
-//                brands.setBrand_name(rs.getString("b.brand_name"));
-
-                productsList.put(rs.getString("b.brand_name"),rs.getInt("Soluong"));
+                Products products = new Products();
+                Brands brands = new Brands();
+                products.setSoLuong(rs.getInt("Soluong"));
+                brands.setBrand_name(rs.getString("b.brand_name"));
+                brandList.put(brands,products.getSoLuong());
+//                brandList.put(rs.getString("b.brand_name"),rs.getInt("Soluong"));
             }
 
             rs.close();

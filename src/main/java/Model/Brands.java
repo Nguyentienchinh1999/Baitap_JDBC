@@ -1,9 +1,20 @@
 package Model;
 
+import java.util.List;
+
 public class Brands {
     private int id;
     private String brand_name;
     private String brand_address;
+    private List<Products> productsList;
+
+    public List<Products> getProductsList() {
+        return productsList;
+    }
+
+    public void setProductsList(List<Products> productsList) {
+        this.productsList = productsList;
+    }
 
     public Brands(int id, String brand_name, String brand_address) {
         this.id = id;
