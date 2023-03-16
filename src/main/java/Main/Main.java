@@ -107,9 +107,10 @@ public class Main {
     }
 
     private static void option5(){
-       Map<String, Integer> productsMap = new HashMap<>();
-       productsMap = productsDAO.getCount();
-        System.out.println(productsMap);
+        brandsList = brandsDAO.getCount();
+       brandsList.stream().forEach(brands -> {
+           System.out.println(brands.getBrand_name());
+       });
 
     }
     private static void option6(){

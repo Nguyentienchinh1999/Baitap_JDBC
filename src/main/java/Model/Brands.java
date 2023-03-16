@@ -55,6 +55,7 @@ public class Brands {
                 "id=" + id +
                 ", brand_name='" + brand_name + '\'' +
                 ", brand_address='" + brand_address + '\'' +
+                ", productsList=" + productsList +
                 '}';
     }
 }

@@ -6,10 +6,7 @@ import Connection.MyConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductsDAO {
 
@@ -79,33 +76,5 @@ public class ProductsDAO {
         }
     }
 
-    public Map<Brands, List<Products>> getCount(){
-        Map<Brands, List<Products>> brandList = new HashMap<>();
-        try{
-            Connection conn = MyConnection.getConnection();
-            String sql = " SELECT count(p.id)  as Soluong,  b.brand_name " +
-                    " FROM `products` p " +
-                    " INNER JOIN `brands` b " +
-                    " ON p.brand_id = b.id " +
-                    " group by b.brand_name ";
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery(sql);
 
-            while (rs.next()){
-                Products products = new Products();
-                Brands brands = new Brands();
-                products.setSoLuong(rs.getInt("Soluong"));
-                brands.setBrand_name(rs.getString("b.brand_name"));
-                brandList.put(brands,products.getSoLuong());
-//                brandList.put(rs.getString("b.brand_name"),rs.getInt("Soluong"));
-            }
-
-            rs.close();
-            stm.close();
-            conn.close();
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        return productsList;
-    }
 }
